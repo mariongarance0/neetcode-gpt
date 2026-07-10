@@ -12,14 +12,9 @@ class GPT(nn.Module):
         # Hint: nn.Sequential() will be useful for the block sequence
         self.TokenEmbed = nn.Embedding(vocab_size,model_dim)
         self.posEmbedding = nn.Embedding(context_length,model_dim)
-
         layers = [self.TransformerBlock(model_dim, num_heads) for i in range(num_blocks)]
-        #layers.append(nn.LayerNorm(model_dim))
         self.transform = nn.Sequential(*layers)
-        #self.transform = self.TransformerBlock(model_dim, num_heads, head_size) # transformer block
-        #self.layer_norm_1 = nn.LayerNorm(model_dim)
         self.layer_norm_2 = nn.LayerNorm(model_dim) # final layer norm 
-        
         self.vocProj = nn.Linear(model_dim, vocab_size)
         pass
 
