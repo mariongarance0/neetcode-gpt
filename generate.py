@@ -17,7 +17,6 @@ class Solution:
         for i in range(new_chars):
             if context.shape[1] > context_length:
                 context = context[:, -context_length:]
-            print("new_context :", context)
             logits = model(context)
             last = logits[:, -1, :]
             probs = nn.functional.softmax(last, dim=-1)
@@ -26,9 +25,7 @@ class Solution:
             # The line where you call torch.multinomial(). Pass in the generator as well.
             generator.set_state(initial_state)
             # MORE OF YOUR CODE (arbitrary number of lines)
-            print("sampled token :", sampled_token)
             context = torch.cat((context, sampled_token), dim = -1)
             result += int_to_char[sampled_token.item()]
-        print(result)
         return result
         # Once your code passes the test, check out the Colab link to see your code generate new Drake lyrics!
