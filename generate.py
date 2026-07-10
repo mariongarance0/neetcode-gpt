@@ -28,8 +28,7 @@ class Solution:
             # MORE OF YOUR CODE (arbitrary number of lines)
             print("sampled token :", sampled_token)
             context = torch.cat((context, sampled_token), dim = -1)
-            print(context)
-            result += int_to_char[sampled_token[-1].item()]
+            result += int_to_char[sampled_token.item()]
         print(result)
         return result
         # Once your code passes the test, check out the Colab link to see your code generate new Drake lyrics!
