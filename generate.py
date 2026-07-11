@@ -11,21 +11,21 @@ class Solution:
         # 5. Map token to character using int_to_char and accumulate result
         # Do not alter the fixed code below — it ensures reproducible test output.
         result = ""
-
         generator = torch.manual_seed(0)
         initial_state = generator.get_state()
         for i in range(new_chars):
-            if context.shape[1] > context_length:
+            if context.shape[0]>context_length :
                 context = context[:, -context_length:]
             logits = model(context)
-            last = logits[:, -1, :]
-            probs = nn.functional.softmax(last, dim=-1)
-            sampled_token = torch.multinomial(probs, 1, generator=generator)
-            # YOUR CODE (arbitrary number of lines)
+            probs = torch.softmax(logits[:, -1, :], dim=-1)
+            next_token = torch.multinomial(probs, 1, generator=generator)
             # The line where you call torch.multinomial(). Pass in the generator as well.
             generator.set_state(initial_state)
             # MORE OF YOUR CODE (arbitrary number of lines)
-            context = torch.cat((context, sampled_token), dim = -1)
-            result += int_to_char[sampled_token.item()]
+            context = torch.cat((context, next_token))
+
+            result += int_to_char[next_token[0].item()]
         return result
+
+
         # Once your code passes the test, check out the Colab link to see your code generate new Drake lyrics!
