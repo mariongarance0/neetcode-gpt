@@ -9,8 +9,8 @@ class Solution:
         # Hint: subtract max(z) for numerical stability before computing exp
         # return np.round(your_answer, 4)
         div = np.sum(np.exp(z - np.max(z)))
-        result = []
-        for i in range(len(z)):
-            result.append(np.exp(z[i] - np.max(z))/div)
-        return np.round(result, 4) 
+        #result = []
+        #for i in range(len(z)):
+        #    result.append(np.exp(z[i] - np.max(z))/div)
+        return np.round(np.exp(z - np.max(z))/div, 4) 
         pass
