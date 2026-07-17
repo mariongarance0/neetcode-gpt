@@ -35,17 +35,3 @@ class Solution:
 
         return round(loss.item(), 4)
         pass
-
-"""
-        for epoch in range(num_epochs):
-            model.train()  # Set the model to training mode
-            running_loss = 0.0
-            for inputs, labels in train_loader:
-                optimizer.zero_grad()  # Clear gradients
-                outputs = model(inputs)  # Forward pass
-                loss = F.cross_entropy(logits_flat, targets_flat)
-                loss.backward()  # Backward pass
-                optimizer.step()  # Update weights
-                running_loss += loss.item()
-            print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss/len(train_loader):.4f}')
-            """
