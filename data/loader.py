@@ -18,9 +18,7 @@ class Solution:
 
         torch.manual_seed(0)
         start_list = torch.randint(len(data) - context_length, (batch_size,))
-        ix = torch.randint(len(data) - context_length, (batch_size,))
-        print(ix)
-        print(start_list)
+        
         x_list = []
         y_list = []
         for start in start_list:
